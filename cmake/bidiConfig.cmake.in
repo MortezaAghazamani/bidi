@@ -1,0 +1,12 @@
+@PACKAGE_INIT@
+
+include(CMakeFindDependencyMacro)
+
+# If built with ImGui support, find imgui.
+if(@BIDI_BUILD_IMGUI@)
+    find_dependency(imgui CONFIG)
+endif()
+
+include("${CMAKE_CURRENT_LIST_DIR}/bidiTargets.cmake")
+
+check_required_components(bidi)
