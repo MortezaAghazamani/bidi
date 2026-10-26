@@ -1,0 +1,28 @@
+# Build directories
+build/
+out/
+bin/
+obj/
+Testing/
+
+# Generated Unicode data files (downloaded separately)
+UnicodeData.txt
+BidiBrackets.txt
+BidiMirroring.txt
+ArabicShaping.txt
+tests/data/BidiCharacterTest.txt
+
+# IDE
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temporary
+*.tmp
+*.log
