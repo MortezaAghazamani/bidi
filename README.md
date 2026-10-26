@@ -16,6 +16,8 @@ built-in `InputText` does not handle bidirectional text, cursor
 movement, selection, or Arabic/Persian shaping. This library
 provides all of that out of the box.
 
+<img width="984" height="666" alt="example_imgui_demo" src="https://github.com/user-attachments/assets/e2bfbef3-9519-4406-ab1e-0e65560d7f68" />
+
 ---
 
 ## Features
