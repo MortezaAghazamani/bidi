@@ -763,12 +763,12 @@ void InputText::handleInput() {
 
         if (m_model.isMultiline()) {
             if (ImGui::IsKeyPressed(ImGuiKey_UpArrow, true)) {
-                m_model.moveUpLine(m_lastWidth, m_lastPaddingX);
+                m_model.moveUpLine(m_lastWidth, m_lastPaddingX, shift);
                 resetBlink();
                 m_cursorMovedByKey = true;
             }
             if (ImGui::IsKeyPressed(ImGuiKey_DownArrow, true)) {
-                m_model.moveDownLine(m_lastWidth, m_lastPaddingX);
+                m_model.moveDownLine(m_lastWidth, m_lastPaddingX, shift);
                 resetBlink();
                 m_cursorMovedByKey = true;
             }

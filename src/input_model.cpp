@@ -947,7 +947,8 @@ std::vector<InputTextModel::SelectionRect>
     return rects;
 }
 
-void InputTextModel::moveUpLine(float widgetWidth, float paddingX) {
+void InputTextModel::moveUpLine(float widgetWidth, float paddingX,
+    bool select) {
     ensureLines();
     size_t lineIdx = lineOfLogical(m_cursor);
     if (lineIdx == 0) return;
@@ -956,8 +957,15 @@ void InputTextModel::moveUpLine(float widgetWidth, float paddingX) {
 
     // If target line is empty (no visible chars), use its logicalStart.
     if (ln.visStart >= ln.visEnd) {
-        m_cursor = ln.logicalStart;
-        m_selStart = m_selEnd = m_cursor;
+        size_t newCursor = ln.logicalStart;
+        if (select) {
+            if (m_selStart == m_selEnd) m_selStart = m_cursor;
+            m_selEnd = newCursor;
+        }
+        else {
+            m_selStart = m_selEnd = newCursor;
+        }
+        m_cursor = newCursor;
         return;
     }
 
@@ -981,11 +989,19 @@ void InputTextModel::moveUpLine(float widgetWidth, float paddingX) {
         if (d < bestDist) { bestDist = d; bestVis = v; }
     }
 
-    m_cursor = visualToLogical(bestVis);
-    m_selStart = m_selEnd = m_cursor;
+    size_t newCursor = visualToLogical(bestVis);
+    if (select) {
+        if (m_selStart == m_selEnd) m_selStart = m_cursor;
+        m_selEnd = newCursor;
+    }
+    else {
+        m_selStart = m_selEnd = newCursor;
+    }
+    m_cursor = newCursor;
 }
 
-void InputTextModel::moveDownLine(float widgetWidth, float paddingX) {
+void InputTextModel::moveDownLine(float widgetWidth, float paddingX,
+    bool select) {
     ensureLines();
     size_t lineIdx = lineOfLogical(m_cursor);
     if (lineIdx + 1 >= m_lines.size()) return;
@@ -994,8 +1010,15 @@ void InputTextModel::moveDownLine(float widgetWidth, float paddingX) {
 
     // If target line is empty, use its logicalStart.
     if (ln.visStart >= ln.visEnd) {
-        m_cursor = ln.logicalStart;
-        m_selStart = m_selEnd = m_cursor;
+        size_t newCursor = ln.logicalStart;
+        if (select) {
+            if (m_selStart == m_selEnd) m_selStart = m_cursor;
+            m_selEnd = newCursor;
+        }
+        else {
+            m_selStart = m_selEnd = newCursor;
+        }
+        m_cursor = newCursor;
         return;
     }
 
@@ -1019,8 +1042,15 @@ void InputTextModel::moveDownLine(float widgetWidth, float paddingX) {
         if (d < bestDist) { bestDist = d; bestVis = v; }
     }
 
-    m_cursor = visualToLogical(bestVis);
-    m_selStart = m_selEnd = m_cursor;
+    size_t newCursor = visualToLogical(bestVis);
+    if (select) {
+        if (m_selStart == m_selEnd) m_selStart = m_cursor;
+        m_selEnd = newCursor;
+    }
+    else {
+        m_selStart = m_selEnd = newCursor;
+    }
+    m_cursor = newCursor;
 }
 
 } // namespace bidi

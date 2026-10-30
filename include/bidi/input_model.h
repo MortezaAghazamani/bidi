@@ -326,13 +326,25 @@ public:
         computeSelectionRectsMulti(float widgetWidth,
                                     float paddingX) const;
 
-    /// Move cursor up one line (multiline).
-    void moveUpLine(float widgetWidth, float paddingX);
+    /**
+     * @brief Move cursor up one line (multiline).
+     *
+     * @param widgetWidth  Widget width (pixels).
+     * @param paddingX     Horizontal padding (pixels).
+     * @param select       If true, extend the selection (Shift+Up).
+     */
+    void moveUpLine(float widgetWidth, float paddingX,
+        bool select = false);
 
-    /// Move cursor down one line (multiline).
-    void moveDownLine(float widgetWidth, float paddingX);
-
-    // =================================================================
+    /**
+     * @brief Move cursor down one line (multiline).
+     *
+     * @param widgetWidth  Widget width (pixels).
+     * @param paddingX     Horizontal padding (pixels).
+     * @param select       If true, extend the selection (Shift+Down).
+     */
+    void moveDownLine(float widgetWidth, float paddingX,
+        bool select = false);    // =================================================================
     // Diagnostics
     // =================================================================
 
